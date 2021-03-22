@@ -1,24 +1,27 @@
 {
-  "name": "poliwebex",
+  "name": "poliwebex-web",
   "repository": {
     "type": "git",
-    "url": "git://github.com/sup3rgiu/poliwebex.git"
+    "url": "git://github.com/thegoldgoat/PoliWebex-Web.git"
   },
-  "version": "1.1.0",
-  "description": "Save Cisco WebEx videos uploaded by Politecnico di Milano.",
-  "main": "poliwebex.js",
+  "version": "0.0.1",
+  "description": "Get download URL for Cisco WebEx videos uploaded by Politecnico di Milano.",
+  "main": "src/index.js",
   "keywords": [],
-  "author": "sup3rgiu",
+  "author": "Andrea Somaini",
+  "contributors": [
+    "sup3rgiu"
+  ],
   "license": "MIT",
   "dependencies": {
+    "express": "^4.17.1",
     "fast-xml-parser": "^3.17.4",
-    "keytar": "^6.0.0",
     "m3u8-parser": "^4.4.0",
-    "node-notifier": "^7.0.1",
     "puppeteer": "^2.1.1",
     "request": "^2.88.2",
-    "terminal-kit": "^1.26.10",
-    "xml2js": "^0.4.23",
-    "yargs": "^15.0.3"
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
   }
 }
