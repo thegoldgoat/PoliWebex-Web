@@ -4,6 +4,9 @@
     "type": "git",
     "url": "git://github.com/thegoldgoat/PoliWebex-Web.git"
   },
+  "scripts": {
+    "start": "node src/index.js"
+  },
   "version": "0.0.1",
   "description": "Get download URL for Cisco WebEx videos uploaded by Politecnico di Milano.",
   "main": "src/index.js",
