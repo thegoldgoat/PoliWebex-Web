@@ -21,7 +21,13 @@ exports.getVideoDownloadURL = async function (videoUrl, videoPwd) {
   const browser = await puppeteer.launch({
     // Switch to false if you need to login interactively
     headless: true,
-    args: ['--disable-dev-shm-usage', '--lang=it-IT'],
+    args: [
+      '--disable-dev-shm-usage',
+      '--lang=it-IT',
+      '--no-sandbox',
+      '--single-process',
+      '--no-zygote',
+    ],
   })
 
   var page = await login(credentials, browser)
