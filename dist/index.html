@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <title>PoliWebex-Web</title>
+</head>
+
+<body>
+  <div class="form-group">
+    <label for="urlfield" class="col-sm-2 col-form-label">Link</label>
+    <textarea class="form-control" id="urlfield" rows="3"></textarea>
+    <button onclick="convertUrl()" type="submit" class="btn btn-primary">Invia</button>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <label for="videoPwd" class="col-sm-2 col-form-label">Password (only if the video is protected)</label>
+      <input type="text" class="form-control" id="videoPwd" />
+    </div>
+  </div>
+
+  <p id="waitMessage" style="visibility: hidden;">
+    Getting the download URL, please wait. The entire process takes about a
+    minute or two
+  </p>
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <label for="output" class="col-sm-2 col-form-label">Output</label>
+      <input type="text" class="form-control" id="output" aria-describedby="Output" />
+      <button onclick="copyTextToClipboard()" class="btn btn-primary">Copy</button>
+    </div>
+  </div>
+</body>
+
+<script>
+  async function convertUrl() {
+    document.getElementById('output').value = ''
+
+    document.getElementById("waitMessage").style.visibility = 'visible'
+
+    var urltext = document.getElementById('urlfield').value
+    var videoPwdText = document.getElementById('videoPwd').value
+    const response = await fetch('/geturl', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({ url: urltext, videoPwd: videoPwdText })
+    });
+    const finalurl = await response.text()
+
+    document.getElementById("waitMessage").style.visibility = 'hidden'
+    document.getElementById('output').value = finalurl
+  }
+
+  function copyTextToClipboard() {
+    /* Get the text field */
+    var copyText = document.getElementById("output");
+
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+  }
+</script>
+
+
+</html>
